@@ -11,6 +11,9 @@ from graphs.graph_pressure import graph_pressure
 from graphs.graph_speed import graph_speed
 from graphs.graph_temperature import graph_temperature
 from graphs.graph_time import graph_time
+from graphs.graph_accX import graph_accelerationX
+from graphs.graph_accY import graph_accelerationY
+from graphs.graph_accZ import graph_accelerationZ
 
 
 
@@ -42,6 +45,9 @@ altitude = graph_altitude()
 speed = graph_speed()
 # Acceleration graph
 acceleration = graph_acceleration()
+accelerationX = graph_accelerationX()
+accelerationY = graph_accelerationY()
+accelerationZ= graph_accelerationZ()
 # Gyro graph
 gyro = graph_gyro()
 # Pressure Graph
@@ -72,9 +78,13 @@ l1.nextRow()
 
 
 l12 = l1.addLayout(rowspan=1, colspan=7, border='black')
-l12.addItem(acceleration)
+
+l12.addItem(accelerationX)
+l12.addItem(accelerationY)
+l12.addItem(accelerationZ)
 l12.addItem(gyro)
-l12.addItem(time)
+
+
 
 
 def update():
@@ -84,7 +94,9 @@ def update():
         altitude.update(value_chain[1])
         speed.update(value_chain[8], value_chain[9], value_chain[10])
         time.update(value_chain[0])
-        acceleration.update(value_chain[8], value_chain[9], value_chain[10])
+        accelerationX.update(value_chain[8])
+        accelerationY.update(value_chain[9])
+        accelerationZ.update(value_chain[10])
         gyro.update(value_chain[5], value_chain[6], value_chain[7])
         pressure.update(value_chain[4])
         temperature.update(value_chain[3])
