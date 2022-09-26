@@ -7,8 +7,6 @@ class graph_accelerationX(pg.PlotItem):
     def __init__(self, parent=None, name=None, labels=None, title='Acceleration X [m/s²]', viewBox=None, axisItems=None,
                  enableMenu=True, **kargs):
         super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
-
-        self.addLegend()
         self.hideAxis('bottom')
 
         self.accX_plot = self.plot(pen=pg.mkPen((255, 0, 0), width=3), name="X")

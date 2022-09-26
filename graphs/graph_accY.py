@@ -8,7 +8,6 @@ class graph_accelerationY(pg.PlotItem):
                  enableMenu=True, **kargs):
         super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
 
-        self.addLegend()
         self.hideAxis('bottom')
         self.accY_plot = self.plot(pen=pg.mkPen((0, 255, 0), width=3), name="Y")
         self.accY_data = np.linspace(0, 0)

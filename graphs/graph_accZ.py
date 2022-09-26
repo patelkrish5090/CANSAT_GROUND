@@ -8,7 +8,6 @@ class graph_accelerationZ(pg.PlotItem):
                  enableMenu=True, **kargs):
         super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
 
-        self.addLegend()
         self.hideAxis('bottom')
 
 

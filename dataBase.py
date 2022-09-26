@@ -9,7 +9,7 @@ class data_base():
     def guardar(self, data):
         if self.state == True:
             data.append(time.asctime())
-            with open("flight_data.csv", "a") as f:
+            with open("data.csv", "a") as f:
                 writer = csv.writer(f, delimiter=",")
                 writer.writerow(data)
 

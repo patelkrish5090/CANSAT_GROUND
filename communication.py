@@ -14,7 +14,6 @@ class Communication:
         self.baudrate = 9600
         print("the available ports are (if none appear, press any letter): ")
         for port in sorted(self.ports):
-            # obtener la lista de puetos: https://stackoverflow.com/a/52809180
             print(("{}".format(port)))
         self.portName = input("write serial port name (ex: /dev/ttyUSB0): ")
         try:
@@ -35,11 +34,11 @@ class Communication:
             value = self.ser.readline()  # read line (single value) from the serial port
             decoded_bytes = str(value[0:len(value) - 2].decode("utf-8"))
             # print(decoded_bytes)
-            value_chain = decoded_bytes.split(",")
+            data = decoded_bytes.split(",")
         else:
-            value_chain = random.sample(range(60000, 120000), 1) + random.sample(range(0, 300), 1) + \
+            data = random.sample(range(60000, 120000), 1) + random.sample(range(0, 300), 1) + \
                 [random.getrandbits(1)] + random.sample(range(0, 20), 8)
-        return value_chain
+        return data
 
     def isOpen(self):
         return self.ser.isOpen()
