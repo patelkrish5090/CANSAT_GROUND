@@ -3,10 +3,11 @@ import numpy as np
 import math
 
 
-class graph_speed(pg.PlotItem):
-    def __init__(self, parent=None, name=None, labels=None, title='Speed [m/s]', viewBox=None, axisItems=None, enableMenu=True, **kargs):
-        super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
-        self.vel_plot = self.plot(pen= pg.mkPen('b', width=3))
+class graph_speed:
+    def __init__(self, widget):
+        self.widget = widget
+        self.widget.getPlotItem().setTitle("Speed")
+        self.vel_plot = self.widget.plot(pen= pg.mkPen('b', width=3))
         self.vel_data = np.linspace(0, 0, 30)
         self.ptr = 0
         self.vx = 0

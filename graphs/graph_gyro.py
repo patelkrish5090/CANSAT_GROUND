@@ -1,17 +1,18 @@
 import pyqtgraph as pg
 import numpy as np
 
-class graph_gyro(pg.PlotItem):
+class graph_gyro:
     
-    def __init__(self, parent=None, name=None, labels=None, title='Gyro', viewBox=None, axisItems=None, enableMenu=True, **kargs):
-        super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
+    def __init__(self, widget):
+        self.widget = widget
+        self.widget.getPlotItem().setTitle("Gyro")
 
-        self.hideAxis('bottom')
+        self.widget.hideAxis('bottom')
         # adding legend
-        self.addLegend()
-        self.pitch_plot = self.plot(pen= pg.mkPen((255, 0, 0), width=3), name="Pitch")
-        self.roll_plot = self.plot(pen= pg.mkPen((0, 255, 0), width=3), name="Roll")
-        self.yaw_plot = self.plot(pen= pg.mkPen((0, 0, 255), width=3), name="Yaw")
+        self.widget.addLegend()
+        self.pitch_plot = self.widget.plot(pen= pg.mkPen((255, 0, 0), width=3), name="Pitch")
+        self.roll_plot = self.widget.plot(pen= pg.mkPen((0, 255, 0), width=3), name="Roll")
+        self.yaw_plot = self.widget.plot(pen= pg.mkPen((0, 0, 255), width=3), name="Yaw")
 
         self.pitch_data = np.linspace(0, 0)
         self.roll_data = np.linspace(0, 0)

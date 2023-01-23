@@ -2,12 +2,13 @@ import pyqtgraph as pg
 import numpy as np
 
 
-class graph_pressure(pg.PlotItem):
+class graph_pressure:
     
-    def __init__(self, parent=None, name=None, labels=None, title='Barometric Pressure [Pa]', viewBox=None, axisItems=None, enableMenu=True, **kargs):
-        super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
+    def __init__(self, widget):
+        self.widget = widget
+        self.widget.getPlotItem().setTitle("Pressure")
 
-        self.pressure_plot = self.plot(pen= pg.mkPen('b', width=3))
+        self.pressure_plot = self.widget.plot(pen= pg.mkPen('b', width=3))
         self.pressure_data = np.linspace(0, 0, 30)
         self.ptr = 0
 
