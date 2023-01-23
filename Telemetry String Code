@@ -1,21 +1,26 @@
 #include <Wire.h>
+#include <Adafruit_BusIO_Register.h>
+#include <Adafruit_I2CDevice.h>
+#include <Adafruit_I2CRegister.h>
+#include <Adafruit_SPIDevice.h>
 #include <Adafruit_Sensor.h>
-#include <Adafruit_LPS22HB.h>
+#include <Adafruit_LPS2X.h>
 #include <Adafruit_HTS221.h>
+#include <Adafruit_LIS3MDL.h>
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_MPL3115A2.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include <Arduino_BLE.h>
+#include <ArduinoBLE.h>
 
 // Create instances of the sensors
-Adafruit_LPS22HB lps = Adafruit_LPS22HB();
+Adafruit_LPS22 lps = Adafruit_LPS22();
 Adafruit_HTS221 hts = Adafruit_HTS221();
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
 Adafruit_MPL3115A2 mpl = Adafruit_MPL3115A2();
 TinyGPSPlus gps;
 SoftwareSerial ss(2, 3); // RX, TX
-BLEPeripheral blePeripheral; // Create a BLE peripheral
+BLEProperty blePeripheral; // Create a BLE peripheral
 
 void setup() {
   // Start the I2C and software serial
@@ -36,12 +41,11 @@ void setup() {
   blePeripheral.setDeviceName("Telemetry");
   blePeripheral.begin();
 }
-
 void loop() {
   // Read the data from the sensors
   sensors_event_t event;
   lps.getEvent(&event);
-  float temperature = hts.readTemperature();
+  float temperature = hts.readtemperature();
   lsm.readGyro();
   float gx = lsm.gyroData.x;
   float gy = lsm.gyroData.y;
@@ -53,18 +57,18 @@ void loop() {
   }
 
   // Create the telemetry string
-  String telemetry = "P:" + String(event.pressure, 2) + "hPa" 
-  "T:" + String(temperature, 2) + "C" 
-  "Gx:" + String(gx, 2) + "Gy:" + String(gy, 2) + "Gz:" + String(gz, 2) + 
-  "A:" + String(altitude, 2) + "m";
+  String telemetry = "P:" + String(event.pressure, 2) + "hPa"
+                     "T:" + String(temperature, 2) + "C"
+                     "Gx:" + String(gx, 2) + "Gy:" + String(gy, 2) + "Gz:" + String(gz, 2) +
+                     "A:" + String(altitude, 2) + "m";
 
-  if(gps.location.isValid()){
+  if (gps.location.isValid()) {
     telemetry += "Lat:" + String(gps.location.lat(), 6) + "Lon:" + String(gps.location.lng(), 6);
-  
 
-  // Print the telemetry
-Serial.println(telemetry);
+
+    // Print the telemetry
+    Serial.println(telemetry);
   }
 
-delay(1000);
+  delay(1000);
 }
