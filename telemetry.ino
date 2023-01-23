@@ -52,7 +52,7 @@ void setup() {
     }
 
     // Create the telemetry string
-    String telemetry = "P:" + String(pressure, 2) + "Pa"
+    String telemetry = "P:" + String(pressure, 2) + "Pa" 
                        "T:" + String(temperature, 2) + "C"
                        "X:" + String(x, 2) + "Y:" + String(y, 2) + "Z:" + String(z, 2) +
                        "A:" + String(altitude, 2) + "m";
