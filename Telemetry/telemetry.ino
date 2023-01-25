@@ -44,9 +44,9 @@ void setup() {
   void loop() {
     // Read the data from the sensors
     float temperature = HTS.readTemperature();
-    float x, y, z;
+    float X, Y, Z;
  if (IMU.gyroscopeAvailable()) {
-    IMU.readGyroscope(x, y, z);
+    IMU.readGyroscope(X, Y, Z);
   }
     float pressure = Baro.readPressure();
     float altitude = Baro.getAltitude();
