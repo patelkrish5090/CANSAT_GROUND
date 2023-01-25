@@ -11,7 +11,7 @@
 // Create instances of the sensors
 Arduino_LPS22HB lps = Arduino_LPS22HB();
 Arduino_HTS221 hts = Arduino_HTS221();
-Arduino_LSM9DS1 lsm = Arduino_LSM9DS1();
+Arduino_LSM9DS1 imu = Arduino_LSM9DS1();
 Adafruit_MPL3115A2 mpl = Adafruit_MPL3115A2();
 TinyGPSPlus gps;
 SoftwareSerial ss(2, 3); // RX, TX
