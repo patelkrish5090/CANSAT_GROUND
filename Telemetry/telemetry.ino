@@ -14,12 +14,13 @@ Arduino_HTS221 hts = Arduino_HTS221();
 Arduino_LSM9DS1 imu = Arduino_LSM9DS1();
 Adafruit_MPL3115A2 mpl = Adafruit_MPL3115A2();
 TinyGPSPlus gps;
-SoftwareSerial ss(2, 3); // RX, TX
+// UART mySerial(digitalPinToPinName(RX of Xbee), digitalPinToPinName(TX of Xbee), NC, NC);
+UART mySerial(digitalPinToPinName(2), digitalPinToPinName(3), NC, NC);
 
 void setup() {
-  // Start the I2C and software serial
+  // Start the I2C and UART Myserial
   Wire.begin();
-  ss.begin(9600);
+  mySerial.begin(9600);
 
   // Initialize the sensors
   Serial.begin(9600);
@@ -50,8 +51,8 @@ void setup() {
   }
     float pressure = Baro.readPressure();
     float altitude = Baro.getAltitude();
-    while (ss.available() > 0) {
-      gps.encode(ss.read());
+    while (mySerial.available() > 0) {
+      gps.encode =mySerial.read());
     }
 
     // Create the telemetry string
