@@ -4,11 +4,11 @@ import numpy as np
 
 class graph_temperature:
     
-    def __init__(self, widget, name):
+    def __init__(self, widget):
         #super().__init__(parent, name, labels, title, viewBox, axisItems, enableMenu, **kargs)
 
         self.widget = widget
-        self.widget.getPlotItem().setTitle(name)
+        self.widget.getPlotItem().setTitle("Map")
         self.temp_plot = self.widget.plot(pen= pg.mkPen('b', width=3))
         self.temp_data = np.linspace(0, 0, 30)
         self.ptr = 0

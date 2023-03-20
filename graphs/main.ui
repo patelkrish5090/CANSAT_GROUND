@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>325</height>
+    <width>1451</width>
+    <height>905</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,15 +18,15 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>121</width>
-      <height>121</height>
+      <y>350</y>
+      <width>420</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>200</width>
-      <height>200</height>
+      <width>420</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
@@ -37,34 +37,15 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
-      <width>121</width>
-      <height>121</height>
+      <y>600</y>
+      <width>420</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>121</width>
-      <height>121</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: black</string>
-    </property>
-   </widget>
-   <widget class="PlotWidget" name="Speed" native="true">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>10</y>
-      <width>121</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>121</width>
-      <height>121</height>
+      <width>500</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
@@ -74,73 +55,54 @@
    <widget class="PlotWidget" name="Temperature" native="true">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>160</y>
-      <width>121</width>
-      <height>121</height>
+      <x>460</x>
+      <y>80</y>
+      <width>420</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>121</width>
-      <height>121</height>
+      <width>500</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:black</string>
     </property>
    </widget>
-   <widget class="PlotWidget" name="AccelerationX" native="true">
+   <widget class="PlotWidget" name="GNSSTemperature" native="true">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>10</y>
-      <width>121</width>
-      <height>121</height>
+      <x>460</x>
+      <y>600</y>
+      <width>420</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>121</width>
-      <height>121</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:black</string>
-    </property>
-   </widget>
-   <widget class="PlotWidget" name="AccelerationY" native="true">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>160</y>
-      <width>121</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>121</width>
-      <height>121</height>
+      <width>500</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: black</string>
     </property>
    </widget>
-   <widget class="PlotWidget" name="AccelerationZ" native="true">
+   <widget class="PlotWidget" name="Speed" native="true">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>10</y>
-      <width>121</width>
-      <height>121</height>
+      <x>10</x>
+      <y>80</y>
+      <width>420</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>121</width>
-      <height>121</height>
+      <width>500</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
@@ -150,16 +112,16 @@
    <widget class="PlotWidget" name="Map" native="true">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>160</y>
-      <width>121</width>
-      <height>121</height>
+      <x>460</x>
+      <y>350</y>
+      <width>420</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>121</width>
-      <height>121</height>
+      <width>500</width>
+      <height>240</height>
      </size>
     </property>
     <property name="styleSheet">
@@ -169,20 +131,20 @@
    <widget class="QTableWidget" name="RawData">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>140</y>
-      <width>256</width>
-      <height>141</height>
+      <x>940</x>
+      <y>320</y>
+      <width>511</width>
+      <height>531</height>
      </rect>
     </property>
    </widget>
    <widget class="PlotWidget" name="Gyro" native="true">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>10</y>
-      <width>251</width>
-      <height>121</height>
+      <x>950</x>
+      <y>20</y>
+      <width>501</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -195,8 +157,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>840</width>
-     <height>22</height>
+     <width>1451</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuStart">
