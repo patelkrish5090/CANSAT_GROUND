@@ -87,11 +87,11 @@ def update():
         # TEMP, VOLTAGE, GNSS_TIME, GNSS_LATITUDE, GNSS_LONGITUDE,
         # GNSS_ALTITUDE, GNSS_SATS, ACCELEROMETER_DATA, GYRO_SPIN_RATE,
         # FLIGHT_SOFTWARE_STATE, OPTIONAL_DATA
-        window.altitude.update(data[1])
-        window.humidity.update(data[2])
-        window.pressure.update(data[3])
-        window.temperature.update(data[4])
-        window.heatIndex.update(data[5])
+        window.altitude.update(int(data[1]))
+        window.humidity.update(int(data[2]))
+        window.pressure.update(int(data[3]))
+        window.temperature.update(float(data[4]))
+        window.heatIndex.update(float(data[5]))
         # window.gnss_temperature.update(data[7])
         # window.accelerationZ.update(data[10])
         # window.accelerationY.update(data[9])
