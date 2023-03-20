@@ -1,6 +1,7 @@
 import random
 import serial
 import serial.tools.list_ports
+import time
 
 
 class Communication:
@@ -36,7 +37,7 @@ class Communication:
             # print(decoded_bytes)
             data = decoded_bytes.split(",")
         else:
-            data = random.sample(range(60000, 120000), 1) + random.sample(range(0, 300), 1) + \
+            data =[int(time.time())]+ random.sample(range(0, 300), 1) + \
                 [random.getrandbits(1)] + random.sample(range(0, 20), 8)
         return data
 

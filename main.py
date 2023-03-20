@@ -2,19 +2,18 @@ import sys
 
 from pyqtgraph.Qt import QtGui, QtCore, QtWidgets
 import pyqtgraph as pg
-from PySide6.QtWidgets import QApplication
 from PySide6 import QtWidgets
 
 
 from communication import Communication
 from dataBase import data_base
 
-from graphs.graph_acceleration import graph_acceleration
 from graphs.graph_altitude import graph_altitude
 from graphs.graph_gyro import graph_gyro
 from graphs.graph_pressure import graph_pressure
-from graphs.graph_speed import graph_speed
+from graphs.graph_humidity import graph_humidity
 from graphs.graph_temperature import graph_temperature
+from graphs.graph_heat_index import graph_heat_index
 # from graphs.graph_map import graph_map
 # from graphs.graph_accX import graph_accelerationX
 # from graphs.graph_accY import graph_accelerationY
@@ -36,13 +35,13 @@ class Window(baseclass, uiclass):
         self.altitude = graph_altitude(self.Altitude)
         self.pressure = graph_pressure(self.Pressure)
         self.temperature = graph_temperature(self.Temperature, "Temperature")
-        self.gnss_temperature = graph_temperature(self.GNSSTemperature, "GNSSTemperature")
-        self.speed = graph_speed(self.Speed)
+        self.humidity = graph_humidity(self.Humidity)
+        self.heatIndex = graph_heat_index(self.HeatIndex)
         # self.map = graph_map(self.Map)
         # self.accelerationZ = graph_accelerationZ(self.AccelerationZ)
         # self.accelerationY = graph_accelerationY(self.AccelerationY)
         # self.accelerationX = graph_accelerationX(self.AccelerationX)
-        self.gyro = graph_gyro(self.Gyro)
+        # self.gyro = graph_gyro(self.Gyro)
         self.menu = self.menuBar()
         self.menuStart.triggered.connect(self.start)
 
@@ -88,17 +87,16 @@ def update():
         # TEMP, VOLTAGE, GNSS_TIME, GNSS_LATITUDE, GNSS_LONGITUDE,
         # GNSS_ALTITUDE, GNSS_SATS, ACCELEROMETER_DATA, GYRO_SPIN_RATE,
         # FLIGHT_SOFTWARE_STATE, OPTIONAL_DATA
-        window.altitude.update(data[3])
-        window.pressure.update(data[4])
-        window.temperature.update(data[5])
-        window.gnss_temperature.update(data[7])
+        window.altitude.update(data[1])
+        window.humidity.update(data[2])
+        window.pressure.update(data[3])
+        window.temperature.update(data[4])
+        window.heatIndex.update(data[5])
+        # window.gnss_temperature.update(data[7])
         # window.accelerationZ.update(data[10])
         # window.accelerationY.update(data[9])
         # window.accelerationX.update(data[8])
 
-        window.gyro.update(data[5], data[6], data[7])
-        window.speed.update(data[8], data[9], data[10])
-        window.gyro.update(data[5], data[6], data[7])
         data_base.guardar(data)
         window.update_console(data)
     except IndexError:
