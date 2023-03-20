@@ -39,6 +39,7 @@ class Communication:
         # else:
         #     data =[int(time.time())]+ random.sample(range(0, 300), 1) + \
         #         [random.getrandbits(1)] + random.sample(range(0, 20), 8)
+        data = [int(time.time())] + data
         return data
 
     def isOpen(self):
