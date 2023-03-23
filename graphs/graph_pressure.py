@@ -6,7 +6,7 @@ class graph_pressure:
     
     def __init__(self, widget):
         self.widget = widget
-        self.widget.getPlotItem().setTitle("Pressure")
+        self.widget.getPlotItem().setTitle("Gyro height")
 
         self.pressure_plot = self.widget.plot(pen= pg.mkPen('b', width=3))
         self.pressure_data = np.linspace(0, 0, 30)

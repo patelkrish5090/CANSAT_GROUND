@@ -1,6 +1,6 @@
 import sys
 
-from pyqtgraph.Qt import QtGui, QtCore, QtWidgets
+from pyqtgraph.Qt import QtCore, QtWidgets
 import pyqtgraph as pg
 from PySide6 import QtWidgets
 
@@ -10,10 +10,12 @@ from dataBase import data_base
 
 from graphs.graph_altitude import graph_altitude
 from graphs.graph_gyro import graph_gyro
+from graphs.graph_gyro_z import graph_gyro_z
 from graphs.graph_pressure import graph_pressure
 from graphs.graph_humidity import graph_humidity
 from graphs.graph_temperature import graph_temperature
-from graphs.graph_heat_index import graph_heat_index
+
+# from graphs.graph_heat_index import graph_heat_index
 # from graphs.graph_map import graph_map
 # from graphs.graph_accX import graph_accelerationX
 # from graphs.graph_accY import graph_accelerationY
@@ -26,6 +28,7 @@ pg.setConfigOption("foreground", "black")
 
 uiclass, baseclass = pg.Qt.loadUiType("graphs/main.ui")
 
+
 class Window(baseclass, uiclass):
     def __init__(self):
         super().__init__()
@@ -36,12 +39,13 @@ class Window(baseclass, uiclass):
         self.pressure = graph_pressure(self.Pressure)
         self.temperature = graph_temperature(self.Temperature, "Temperature")
         self.humidity = graph_humidity(self.Humidity)
-        self.heatIndex = graph_heat_index(self.HeatIndex)
+        self.gyro = graph_gyro(self.Gyro)
+        self.gyro_z = graph_gyro_z(self.Gyro_Z)
+        # self.heatIndex = graph_heat_index(self.HeatIndex)
         # self.map = graph_map(self.Map)
         # self.accelerationZ = graph_accelerationZ(self.AccelerationZ)
         # self.accelerationY = graph_accelerationY(self.AccelerationY)
         # self.accelerationX = graph_accelerationX(self.AccelerationX)
-        # self.gyro = graph_gyro(self.Gyro)
         self.menu = self.menuBar()
         self.menuStart.triggered.connect(self.start)
 
@@ -55,8 +59,6 @@ class Window(baseclass, uiclass):
 
     def start(self):
         self.lastCommand = "Last Command Sent: Start"
-    
-
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -91,7 +93,8 @@ def update():
         window.humidity.update(int(data[2]))
         window.pressure.update(int(data[3]))
         window.temperature.update(float(data[4]))
-        window.heatIndex.update(float(data[5]))
+        window.gyro.update(float(data[5]), float(data[6]))
+        window.gyro_z.update(float(data[7]))
         # window.gnss_temperature.update(data[7])
         # window.accelerationZ.update(data[10])
         # window.accelerationY.update(data[9])

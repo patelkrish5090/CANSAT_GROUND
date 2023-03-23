@@ -57,7 +57,7 @@
      <rect>
       <x>640</x>
       <y>290</y>
-      <width>580</width>
+      <width>301</width>
       <height>240</height>
      </rect>
     </property>
@@ -100,13 +100,23 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="HeatIndex" native="true">
+   <widget class="PlotWidget" name="Gyro" native="true">
     <property name="geometry">
      <rect>
       <x>810</x>
       <y>560</y>
       <width>411</width>
       <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="PlotWidget" name="Gyro_Z" native="true">
+    <property name="geometry">
+     <rect>
+      <x>959</x>
+      <y>289</y>
+      <width>271</width>
+      <height>241</height>
      </rect>
     </property>
    </widget>

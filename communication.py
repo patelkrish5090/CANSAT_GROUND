@@ -5,8 +5,8 @@ import time
 
 
 class Communication:
-    baudrate = '9600'
-    portName = '/dev/tty.usbserial-0001'
+    baudrate = "9600"
+    portName = "/dev/ttyUSB1"
     dummyPlug = False
     ports = serial.tools.list_ports.comports()
     ser = serial.Serial()
@@ -25,20 +25,27 @@ class Communication:
             print("Dummy mode activated")
 
     def close(self):
-        if(self.ser.isOpen()):
+        if self.ser.isOpen():
             self.ser.close()
         else:
             print(self.portName, " it's already closed")
 
     def getData(self):
-        # if(self.dummyMode == False):
-        value = self.ser.readline()  # read line (single value) from the serial port
-        decoded_bytes = str(value[0:len(value) - 2].decode("utf-8"))
+        if self.dummyMode == False:
+            value = self.ser.readline()  # read line (single value) from the serial port
+            decoded_bytes = str(value[0 : len(value) - 2].decode("utf-8"))
             # print(decoded_bytes)
-        data = decoded_bytes.split(",")
-        # else:
-        #     data =[int(time.time())]+ random.sample(range(0, 300), 1) + \
-        #         [random.getrandbits(1)] + random.sample(range(0, 20), 8)
+            data = decoded_bytes.split(",")
+        else:
+            data = (
+                [int(time.time())]
+                + random.sample(range(0, 300), 1)
+                + [random.getrandbits(1)]
+                + random.sample(range(-10, 10), 1)
+                + random.sample(range(-180, 180), 3)
+                + random.sample(range(-10, 10), 4)
+
+            )
         return data
 
     def isOpen(self):
