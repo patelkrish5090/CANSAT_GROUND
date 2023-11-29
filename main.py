@@ -12,7 +12,8 @@ from graphs.graph_altitude import graph_altitude
 from graphs.graph_gyro import graph_gyro
 from graphs.graph_gyro_z import graph_gyro_z
 from graphs.graph_pressure import graph_pressure
-from graphs.graph_humidity import graph_humidity
+
+# from graphs.graph_humidity import graph_humidity
 from graphs.graph_temperature import graph_temperature
 
 # from graphs.graph_heat_index import graph_heat_index
@@ -38,7 +39,7 @@ class Window(baseclass, uiclass):
         self.altitude = graph_altitude(self.Altitude)
         self.pressure = graph_pressure(self.Pressure)
         self.temperature = graph_temperature(self.Temperature, "Temperature")
-        self.humidity = graph_humidity(self.Humidity)
+        # self.humidity = graph_humidity(self.Humidity)
         self.gyro = graph_gyro(self.Gyro)
         self.gyro_z = graph_gyro_z(self.Gyro_Z)
         # self.heatIndex = graph_heat_index(self.HeatIndex)
@@ -89,12 +90,12 @@ def update():
         # TEMP, VOLTAGE, GNSS_TIME, GNSS_LATITUDE, GNSS_LONGITUDE,
         # GNSS_ALTITUDE, GNSS_SATS, ACCELEROMETER_DATA, GYRO_SPIN_RATE,
         # FLIGHT_SOFTWARE_STATE, OPTIONAL_DATA
-        window.altitude.update(float(data[1]))
-        window.humidity.update(float(data[2]))
-        window.pressure.update(float(data[3]))
-        window.temperature.update(float(data[4]))
-        window.gyro.update(float(data[5]), float(data[6]))
-        window.gyro_z.update(float(data[7]))
+        window.altitude.update(float(data[-1]))
+        # window.humidity.update(float(data[2]))
+        window.pressure.update(float(data[0]))
+        window.temperature.update(float(data[1]))
+        window.gyro.update(float(data[2]), float(data[3]))
+        window.gyro_z.update(float(data[4]))
         # window.gnss_temperature.update(data[7])
         # window.accelerationZ.update(data[10])
         # window.accelerationY.update(data[9])
@@ -104,6 +105,8 @@ def update():
         window.update_console(data)
     except IndexError:
         print("starting, please wait a moment")
+    except KeyboardInterrupt:
+        exit()
 
 
 if (ser.isOpen()) or (ser.dummyMode()):
