@@ -13,7 +13,7 @@ class Communication:
     ser = serial.Serial()
 
     def __init__(self):
-        self.baudrate = 9600
+        self.baudrate = 230400
         print("the available ports are (if none appear, press any letter): ")
         for i, port in enumerate(self.ports):
             print(("{}: {}".format(i, port)))
