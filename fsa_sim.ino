@@ -1,6 +1,6 @@
 void setup() {
   Serial.begin(9600);
-
+  randomSeed(analogRead(0));
 }
 
 int alt=random(0,2);
@@ -10,10 +10,10 @@ int upper=2;
 void state(int stateval, String movement, int altitude)
 {
     Serial.print("Altitude: ");
-    Serial.println(altitude);
-    Serial.print("State: ");
-    Serial.println(stateval);
-    Serial.print("Movement: ");
+    Serial.print(altitude);
+    Serial.print("  |  State: ");
+    Serial.print(stateval);
+    Serial.print("  |  Movement: ");
     Serial.println(movement);
 }
 
@@ -21,6 +21,16 @@ void plot_state(int stateval,String movement)
 {
 }
 bool up=true;
+int stateval  = 1;
+int apogee=810;
+String movement = "ascending";
+bool state1done = false;
+bool state2done = false; 
+bool state3done = false;
+bool state4done = false;
+bool state5done = false;
+bool state6done = false;
+bool state7done = false;
 void loop() 
 {
   if(up)
@@ -34,14 +44,14 @@ void loop()
     alt=random(lower,upper);
     upper=alt;
     if(upper-30>=0) lower=upper-30;
-    else lower=0;
+    else alt=random(0,lower);
 
   }
-  
-  
+
+
 
   // put your main code here, to run repeatedly:
-int apogee = 810;
+
 // #state 0 -> ground
 // # state 1 -> 0 to 30
 // # state 2 - > 30 to apogee
@@ -57,86 +67,84 @@ int apogee = 810;
 
 
 // # to check if state function has been called or not and avoid calling it twice
-bool state2done = false; 
-bool state3done = false;
-bool state4done = false;
-bool state5done = false;
-bool state6done = false;
-bool state7done = false;
 
 
 
 
 
-    String movement = "ascending";
-    int stateval  = 1;
+
+
+
 
 
     // alt = data - alt_home;
 
-    if (alt >0 && alt <30 && movement == "ascending")
+    if ((alt >0 )&& (alt <30) && (movement == "ascending") && state1done==false)
     {
         stateval = 1;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
+        state1done=true;
     }
-    else if (alt >= 30 and alt< apogee and movement == "ascending" && state2done==false)
+    else if (alt >= 30 && alt< apogee && (movement == "ascending") and state2done==false)
     {
         stateval = 2;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state2done=true;
     }
-    else if ((abs(alt-apogee)<30) and movement == "ascending" and state3done == false)
+    else if ((abs(alt-apogee)<10) && (movement == "ascending") and state3done == false)
     {
         up=false;
+        upper=alt;lower=upper-15;
         stateval = 3;
-        movement = "descending";
+        movement = "apogee";
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state3done = true;
     }
-    else if (alt > 770 and movement == "descending")
+    else if ((alt > 770) && (movement == "apogee"))
     {
+        movement="descending";
         stateval = 3;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
     }
-   else if (alt > 500 and alt<770 and movement == "descending")
+   else if (alt > 500 && alt<770 && (movement=="descending") && state4done==false)
    {
         stateval = 4;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state4done=true;
    }
-    else if (alt > 450 and alt <=500 and movement == "descending")
+    else if (alt > 450 && alt <=500 && movement == "descending" && state5done==false)
     {
         stateval = 5;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state5done=true;
     }
-   else  if (alt <450 and alt >10 and movement == "descending" && state6done==false)
+   else  if (alt <450 && alt >10 && movement == "descending" && state6done==false)
    {
         stateval = 6;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state6done=true;
    }
-   else  if (alt <=10 and movement == "landing" && state7done==false)
+   else  if (alt <=15 && movement == "descending" && state7done==false)
    {
+        movement="landing";
         stateval = 7;
         state(stateval,movement,alt);
         plot_state(stateval,movement);
         state7done=true;
    }
-    else if (alt <0.5 and movement == "landing")
+    else if (alt <0.5 && movement == "landing")
     {
         stateval=8;
         movement = "landed";
         state(stateval,movement,alt);
         plot_state(stateval,movement);
-        
+
     }
- 
 }
