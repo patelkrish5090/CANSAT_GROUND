@@ -29,6 +29,31 @@ class Ui_MainWindow(object):
         MainWindow.resize(840, 325)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        #Menubar
+        #-----------------------
+        self.menubar = self.menuBar()
+        self.menubar.setObjectName("menubar")
+        self.menubar.setGeometry(QRect(0, 0, 840, 22))
+
+        self.menuStart = self.menubar.addMenu('Start')
+        self.actionStart = QAction("Start", MainWindow)
+        self.menuStart.addAction(self.actionStart)
+
+        self.menuStop = self.menubar.addMenu('Stop')
+        self.actionStop = QAction("Stop", MainWindow)
+        self.menuStop.addAction(self.actionStop)
+
+        self.menuCalibrate = self.menubar.addMenu('Calibrate')
+        self.actionCalibrate = QAction("Calibrate", MainWindow)
+        self.menuCalibrate.addAction(self.actionCalibrate)
+
+
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        
+        #--------------------
         self.Pressure = PlotWidget(self.centralwidget)
         self.Pressure.setObjectName(u"Pressure")
         self.Pressure.setGeometry(QRect(10, 10, 121, 121))
@@ -77,25 +102,8 @@ class Ui_MainWindow(object):
         self.Gyro.setGeometry(QRect(580, 10, 251, 121))
         self.Gyro.setStyleSheet(u"background-color: black")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 840, 22))
-        self.menuStart = QMenu(self.menubar)
-        self.menuStart.setObjectName(u"menuStart")
-        self.menuStop = QMenu(self.menubar)
-        self.menuStop.setObjectName(u"menuStop")
-        self.menuCalibrate = QMenu(self.menubar)
-        self.menuCalibrate.setObjectName(u"menuCalibrate")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-
-        self.menubar.addAction(self.menuStart.menuAction())
-        self.menubar.addAction(self.menuStop.menuAction())
-        self.menubar.addAction(self.menuCalibrate.menuAction())
-
         self.retranslateUi(MainWindow)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -106,4 +114,12 @@ class Ui_MainWindow(object):
         self.menuStop.setTitle(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.menuCalibrate.setTitle(QCoreApplication.translate("MainWindow", u"Calibrate", None))
     # retranslateUi
+        
+    def start(self):
+        print("You Clicked Start Button")
 
+    def stop(self):
+        print("You Clicked Start Button")
+
+    def calibrate(self):
+        print("You Clicked Start Button")

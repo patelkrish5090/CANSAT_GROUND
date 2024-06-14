@@ -3,6 +3,8 @@ import sys
 from pyqtgraph.Qt import QtCore, QtWidgets
 import pyqtgraph as pg
 from PySide6 import QtWidgets
+from PyQt5.QtWidgets import QAction, QMenuBar, QMenu
+from PyQt5.uic import loadUi
 
 
 from communication import Communication
@@ -30,7 +32,7 @@ pg.setConfigOption("foreground", "black")
 uiclass, baseclass = pg.Qt.loadUiType("graphs/main.ui")
 
 
-class Window(baseclass, uiclass):
+class Window(uiclass, baseclass):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -47,8 +49,10 @@ class Window(baseclass, uiclass):
         # self.accelerationZ = graph_accelerationZ(self.AccelerationZ)
         # self.accelerationY = graph_accelerationY(self.AccelerationY)
         # self.accelerationX = graph_accelerationX(self.AccelerationX)
-        self.menu = self.menuBar()
-        self.menuStart.triggered.connect(self.start)
+        
+        self.actionStart.triggered.connect(self.start)
+        self.actionStop.triggered.connect(self.stop)
+        self.actionCalibrate.triggered.connect(self.calibrate)
 
     def update_console(self, text):
         print("updating, {}".format(text))
@@ -60,6 +64,13 @@ class Window(baseclass, uiclass):
 
     def start(self):
         self.lastCommand = "Last Command Sent: Start"
+        print(self.lastCommand)
+
+    def stop(self):
+        print("Last Command Sent: Stop")
+
+    def calibrate(self):
+        print("Last Command Sent: Calibrate")
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -115,6 +126,16 @@ if (ser.isOpen()) or (ser.dummyMode()):
     timer.start(500)
 else:
     print("UPDATE CALL ERROR")
+
+def start(self):
+    self.lastCommand = "Last Command Sent: Start"
+    print(self.lastCommand)
+
+def stop(self):
+    print("Last Command Sent: Stop")
+
+def calibrate(self):
+    print("Last Command Sent: Calibrate")
 
 
 if __name__ == "__main__":

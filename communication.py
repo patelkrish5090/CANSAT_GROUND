@@ -13,7 +13,7 @@ class Communication:
     ser = serial.Serial()
 
     def __init__(self):
-        self.baudrate = 230400
+        self.baudrate = 9600
         print("the available ports are (if none appear, press any letter): ")
         for i, port in enumerate(self.ports):
             print(("{}: {}".format(i, port)))
@@ -39,13 +39,12 @@ class Communication:
             print(self.portName, " it's already closed")
 
     def getData(self):
-        print(self.dummyPlug)
+        self.dummyPlug = True
         if not self.dummyPlug:
             print("real")
             value = self.ser.readline()  # read line (single value) from the serial port
             print("get value", value)
             decoded_bytes = str(value[0 : len(value) - 2].decode("utf-8"))
-            # print(decoded_bytes)
             data = decoded_bytes.split(",")
             print(data)
         else:
@@ -64,3 +63,12 @@ class Communication:
 
     def dummyMode(self):
         return self.dummyPlug
+    
+    def readData(self):
+        data = self.ser.readline()
+        decoded_bytes = str(data[0 : len(data) - 2].decode("utf-8"))
+        data = decoded_bytes.split(",")
+
+    def writeData(self, data):
+        self.ser.write(data.encode('utf-8'))
+        return 0
